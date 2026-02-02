@@ -18,7 +18,7 @@ const resources = [
     },
     {
         name: "HTTP/HTTPS",
-        url: "https://lptech.asia/kien-thuc/http-la-gi-tong-quan-kien-thuc",
+        url: "https://cystack.net/vi/blog/http-va-https-la-gi",
         desc: "Giao thức truyền tải siêu văn bản, quy định cách dữ liệu được gửi giữa trình duyệt và server.",
         category: "basic knowledge",
         icon: "fa-solid fa-lock",
@@ -26,7 +26,7 @@ const resources = [
     },
     {
         name: "API",
-        url: "https://lptech.asia/kien-thuc/api-la-gi-tong-quan-kien-thuc",
+        url: "https://giangtester.com/wp-content/uploads/2019/12/API-Testing-giang-nguyen-2020.pdf",
         desc: "Giao diện lập trình ứng dụng, cho phép các phần mềm tương tác và trao đổi dữ liệu với nhau.",
         category: "basic knowledge",
         icon: "fa-solid fa-gears",
@@ -34,7 +34,7 @@ const resources = [
     },
     {
         name: "Computer Components",
-        url: "https://lptech.asia/kien-thuc/computer-components-la-gi-tong-quan-kien-thuc",
+        url: "https://vi.wikipedia.org/wiki/Ph%E1%BA%A7n_c%E1%BB%A9ng_m%C3%A1y_t%C3%ADnh#M%C3%A1y_t%C3%ADnh_c%C3%A1_nh%C3%A2n",
         desc: "Kiến thức về phần cứng: CPU, RAM, Disk... giúp tối ưu hóa hiệu suất khi viết code.",
         category: "basic knowledge",
         icon: "fa-solid fa-microchip",
@@ -548,4 +548,5 @@ function createResourceHTML(item) {
 // Khởi chạy khi DOM load xong
 document.addEventListener('DOMContentLoaded', () => {
     initBookContent();
+
 });
