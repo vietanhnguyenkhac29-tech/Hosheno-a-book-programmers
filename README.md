@@ -3,7 +3,6 @@
 ![Hosheno]
 <div class="logo">
             <i class="fa-solid fa-book-open-reader fa-2x"></i>
-            <span>HOSHENO</span>
         </div>
 
 Chào mừng bạn đến với **Hosheno**, một dự án phi lợi nhuận được xây dựng với mục tiêu cung cấp một cuốn cẩm nang toàn diện, trực quan và dễ tiếp cận cho những ai đang bắt đầu hành trình bước vào thế giới lập trình. Hosheno được thiết kế dưới dạng một cuốn sách kỹ thuật số, nơi tổng hợp và chắt lọc những kiến thức, công nghệ và công cụ quan trọng nhất trong ngành công nghiệp phần mềm.
