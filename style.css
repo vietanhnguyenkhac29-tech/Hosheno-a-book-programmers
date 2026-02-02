@@ -1,0 +1,413 @@
+:root {
+    --bg-color: #e0e5ec;
+    --book-width: 400px;
+    --book-height: 550px;
+    --paper-color: #fdfaf3;
+    --cover-color: #2c3e50;
+    --text-color: #333;
+    --accent-color: #c0392b; /* Màu đỏ đô sang trọng */
+    --gold-color: #f1c40f;
+    --speed: 0.6s;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Ẩn thanh cuộn thừa */
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+.logo { display: flex; align-items: center; gap: 10px; font-weight: bold; color: var(--cover-color); }
+nav ul { list-style: none; display: flex; gap: 20px; }
+nav a { text-decoration: none; color: var(--text-color); font-weight: 500; transition: 0.3s; }
+nav a:hover { color: var(--accent-color); }
+
+/* Scene & Book */
+.scene {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    perspective: 1500px; /* Tạo chiều sâu 3D */
+    padding: 20px;
+}
+
+.book-container {
+    position: relative;
+    width: var(--book-width);
+    height: var(--book-height);
+    transition: transform var(--speed);
+}
+
+.book {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+/* Trạng thái mở sách: Dịch chuyển sang phải để canh giữa */
+.book-open-state {
+    transform: translateX(50%);
+}
+
+/* Page Styling */
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform-origin: left; /* Lật từ gáy trái */
+    transform-style: preserve-3d;
+    transition: transform var(--speed) cubic-bezier(0.645, 0.045, 0.355, 1);
+    cursor: pointer;
+}
+
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--paper-color);
+    backface-visibility: hidden;
+    border-radius: 3px 10px 10px 3px;
+    padding: 30px; /* Padding của khung giấy */
+    display: flex;
+    flex-direction: column; /* Xếp dọc: Tiêu đề trên, nội dung dưới, số trang dưới cùng */
+    overflow: hidden; /* QUAN TRỌNG: Không cho bất kỳ cái gì tràn ra khỏi tờ giấy */
+    border: 1px solid rgba(0,0,0,0.05);
+}
+.back {
+    transform: rotateY(180deg); /* Mặt sau quay ngược lại */
+    border-radius: 10px 3px 3px 10px;
+    box-shadow: inset -5px 0 10px rgba(0,0,0,0.1);
+}
+
+/* Flipped State */
+.flipped {
+    transform: rotateY(-180deg);
+}
+
+/* Cover Styling */
+.cover-front .front, .cover-back .back {
+    background-color: var(--cover-color);
+    color: var(--gold-color);
+    border: 2px solid #1a252f;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.cover-design {
+    border: 2px solid var(--gold-color);
+    padding: 40px 20px;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cover-design h1 { font-family: 'Georgia', serif; font-size: 2.5rem; margin-bottom: 10px; }
+
+/* Nội dung bên trong */
+.page-content {
+    height: calc(100% - 60px); /* 100% trừ đi padding trên và dưới (30px * 2) */
+    overflow-y: auto; 
+    width: 100%;
+    padding-right: 5px; 
+}
+.page-content::-webkit-scrollbar {
+    width: 6px;
+}
+.page-content::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 3px;
+}
+.page-content::-webkit-scrollbar-thumb {
+    background: #bbb; 
+    border-radius: 3px;
+}
+.page-content::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color); /* Đổi màu khi di chuột vào */
+}
+.page-content h2 { margin-bottom: 15px; color: var(--accent-color); border-bottom: 2px solid #ddd; padding-bottom: 5px; }
+.page-content p { line-height: 1.6; margin-bottom: 15px; font-size: 0.95rem; }
+.page-number { margin-top: auto; text-align: center; font-size: 0.8rem; color: #888; }
+
+/* Resource Item Style */
+.resource-item {
+    display: flex;
+    align-items: start;
+    gap: 15px;
+    margin-bottom: 20px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.resource-icon { width: 40px; height: 40px; object-fit: contain; }
+.resource-info h3 { font-size: 1.1rem; margin-bottom: 5px; }
+.resource-info a { color: var(--accent-color); font-weight: bold; text-decoration: none; font-size: 0.9rem; }
+
+/* Controls */
+.controls {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: opacity 0.5s;
+}
+
+.controls.disabled {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.controls button {
+    background: var(--cover-color);
+    color: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.controls button:hover { background: var(--accent-color); }
+
+.page-input { display: flex; align-items: center; gap: 5px; font-weight: bold; }
+.page-input input {
+    width: 50px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+}
+.page-input button { width: auto; height: auto; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; }
+
+.btn-open, .btn-close {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: var(--gold-color);
+    color: var(--cover-color);
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+.btn-open:hover, .btn-close:hover { transform: scale(1.05); }
+
+/* Footer */
+footer { text-align: center; padding: 15px; background: #fff; font-size: 0.9rem; color: #666; }
+.footer-socials { margin-bottom: 10px; }
+.footer-socials a { color: var(--cover-color); margin: 0 10px; font-size: 1.2rem; }
+/* =========================
+   RESPONSIVE – GLOBAL FIX
+========================= */
+
+/* Tránh zoom khó chịu trên mobile */
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Cho phép cuộn khi màn nhỏ */
+@media (max-height: 700px) {
+    body {
+        overflow-y: auto;
+    }
+}
+
+/* =========================
+   TABLET (<= 1024px)
+========================= */
+@media (max-width: 1024px) {
+    :root {
+        --book-width: 340px;
+        --book-height: 480px;
+    }
+
+    nav ul {
+        gap: 12px;
+        font-size: 0.9rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .book-open-state {
+        transform: translateX(40%);
+    }
+
+    .page-content h2 {
+        font-size: 1.1rem;
+    }
+
+    .resource-item {
+        gap: 10px;
+    }
+}
+
+/* =========================
+   MOBILE (<= 768px)
+========================= */
+@media (max-width: 768px) {
+    :root {
+        --book-width: 280px;
+        --book-height: 400px;
+    }
+
+    header {
+        padding: 10px;
+    }
+
+    nav ul {
+        display: none; /* Ẩn menu dài trên mobile */
+    }
+
+    .scene {
+        padding: 10px;
+        perspective: 1000px;
+    }
+
+    .book-container {
+        width: var(--book-width);
+        height: var(--book-height);
+    }
+
+    .book-open-state {
+        transform: translateX(0); /* Mobile không đẩy sang phải */
+    }
+
+    .front,
+    .back {
+        padding: 18px;
+    }
+
+    .page-content p {
+        font-size: 0.85rem;
+    }
+
+    .resource-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .resource-info h3 {
+        font-size: 1rem;
+    }
+
+    .controls {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 10px 15px;
+    }
+}
+
+/* =========================
+   SMALL MOBILE (<= 480px)
+========================= */
+@media (max-width: 480px) {
+    :root {
+        --book-width: 240px;
+        --book-height: 350px;
+    }
+
+    .cover-design h1 {
+        font-size: 1.8rem;
+    }
+
+    .cover-design p {
+        font-size: 0.85rem;
+    }
+
+    .btn-open,
+    .btn-close {
+        padding: 8px 14px;
+        font-size: 0.8rem;
+    }
+
+    .page-input input {
+        width: 40px;
+    }
+
+    footer {
+        font-size: 0.75rem;
+        padding: 10px;
+    }
+}
+
+/* =========================
+   LARGE DESKTOP (>= 1400px)
+========================= */
+@media (min-width: 1400px) {
+    :root {
+        --book-width: 450px;
+        --book-height: 620px;
+    }
+
+    .scene {
+        perspective: 1800px;
+    }
+
+    .page-content p {
+        font-size: 1rem;
+    }
+}
+
+/* Container chứa logo */
+.resource-logo {
+    width: 50px;
+    height: 50px;
+    min-width: 50px; /* Đảm bảo khung không bị bóp nhỏ */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1a1a1a00; /* Nền tối giống trong hình bạn gửi */
+    border-radius: 8px;
+    padding: 5px;
+    overflow: hidden;
+}
+
+/* Định dạng hình ảnh logo bên trong */
+.resource-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Giữ nguyên tỉ lệ ảnh */
+}
+
+/* Căn chỉnh lại item để logo và text cân đối */
+.resource-item {
+    display: flex;
+    align-items: center; /* Căn giữa theo chiều dọc */
+    gap: 15px;
+    margin-bottom: 20px;
+    background: #fff;
+    padding: 12px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}

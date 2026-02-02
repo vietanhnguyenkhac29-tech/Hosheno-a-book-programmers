@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hosheno - The Programming Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Header -->
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-book-open-reader fa-2x"></i>
+            <span>HOSHENO</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#support">Support</a></li>
+                <li><a href="#donate">Donate</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="#subscribe">Subscribe</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Main -->
+   <main class="scene">
+        <div class="book-container">
+            <div class="book" id="book">
+                
+                <div class="page cover-front" id="p0">
+                    <div class="front">
+                        <div class="cover-design">
+                            <h1>HOSHENO</h1>
+                            <p>Cẩm nang dành cho lập trình viên 👨‍💻</p>
+                            <button class="btn-open" onclick="openBook()">Mở Sách <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="page-content">
+                            <h2>Lời mở đầu</h2>
+                            <p>Xin chào mừng các bạn đã đến với Hosheno-nơi tổng hợp những kiến thức cơ bản giúp bạn dần hiểu biết về những công nghệ hiện đang có mà mọi người hay sử dụng,đây sẽ là cuốn từ điển dành cho bạn khi bước chân vào con đường lập trình đầy vất vả và gian nan,cuối cùng,chúc bạn thành công trên con đường mình đã chọn 💕😉.</p>
+                            <div class="signature">Vanhleg</div>
+                        </div>
+                    </div>
+                </div>
+                  <div id="dynamic-pages"></div>
+<div class="page cover-back" id="p-end">
+                    <div class="front">
+                        <div class="page-content">
+                            <h2>Kết thúc</h2>
+                            <p> lập trình là một hành trình dài nó chưa bao giờ là 1 việc dễ dàng,sẽ có những lúc các bạn mệt mỏi và chán nản,đôi lúc nghi ngờ bản thân vậy nhưng mà vẫn cứ tiếp tục nhé,đôi khi thành quả sẽ là 1 trái ngọt đấy dù cho nó có sớm hay muộn,🥰.</p>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="cover-design">
+                            <h3>HOSHENO</h3>
+                            <p> Chúc các bạn học code vui vẻ và nhớ đừng áp lực quá nhé❤️😙 </p>
+                             <button class="btn-close" onclick="closeBook()">Đóng Sách <i class="fa-solid fa-book"></i></button>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        </div>
+       <div class="controls disabled" id="controls">
+            <button onclick="goPrev()" title="Trang trước"><i class="fa-solid fa-chevron-left"></i></button>
+            <div class="page-input">
+                <span>Trang</span>
+                <input type="number" id="pageInput" min="1" value="1">
+                <span>/ <span id="totalPages">0</span></span>
+                <button onclick="handleInputJump()">Đi</button>
+            </div>
+            <button onclick="goNext()" title="Trang sau"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    </main>
+<!-- Footer -->
+    <footer>
+           <div class="footer-socials">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-github"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#"><i class="fa-brands fa-discord"></i></a>
+            <a href="#"><i class="fa-brands fa-twitch"></i></a>
+            <a href="#"><i class="fa-brands fa-reddit"></i></a>
+            <a href="#"><i class="fa-brands fa-medium"></i></a>
+            <a href="#"><i class="fa-brands fa-hackerrank"></i></a>
+            <a href="#"><i class="fa-brands fa-hackerone"></i></a>
+            <a href="#"><i class="fa-brands fa-hackernews"></i></a>
+        </div>
+        <p>&copy; 2024 VietHub Community. Built with <i class="fa-solid fa-heart"></i> for Developers.</p>
+    </footer>
+
+    <script src="main.js"></script>
+    <script src="Book.js"></script>
+</body>
+</html>
